@@ -28,7 +28,7 @@ is.NullOb <- function(x) is.null(x) | all(sapply(x, is.null))
 #'
 #' @keywords internal
 rmNullObs <- function(x) {
-    x <- Filter(Negate(is.NullOb), x)
+    x <- base::Filter(base::Negate(is.NullOb), x)
     lapply(x, function(x) if (is.list(x))
         rmNullObs(x) else x)
 }
@@ -57,7 +57,7 @@ rmNullObs <- function(x) {
 #' @export
 projects.databases.exportDocuments <- function(GoogleFirestoreAdminV1ExportDocumentsRequest,
     name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}:exportDocuments",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s:exportDocuments",
         name)
     # firestore.projects.databases.exportDocuments
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -91,7 +91,7 @@ projects.databases.exportDocuments <- function(GoogleFirestoreAdminV1ExportDocum
 #' @export
 projects.databases.importDocuments <- function(GoogleFirestoreAdminV1ImportDocumentsRequest,
     name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}:importDocuments",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s:importDocuments",
         name)
     # firestore.projects.databases.importDocuments
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -122,7 +122,7 @@ projects.databases.importDocuments <- function(GoogleFirestoreAdminV1ImportDocum
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 projects.databases.operations.delete <- function(name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.operations.delete
     f <- googleAuthR::gar_api_generator(url, "DELETE", data_parse_function = function(x) x)
     f()
@@ -153,7 +153,7 @@ projects.databases.operations.delete <- function(name) {
 #' @export
 projects.databases.operations.cancel <- function(GoogleLongrunningCancelOperationRequest,
     name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}:cancel", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s:cancel", name)
     # firestore.projects.databases.operations.cancel
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
     stopifnot(inherits(GoogleLongrunningCancelOperationRequest, "gar_GoogleLongrunningCancelOperationRequest"))
@@ -187,7 +187,7 @@ projects.databases.operations.cancel <- function(GoogleLongrunningCancelOperatio
 #' @export
 projects.databases.operations.list <- function(name, pageSize = NULL, pageToken = NULL,
     filter = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}/operations", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/operations", name)
     # firestore.projects.databases.operations.list
     pars = list(pageSize = pageSize, pageToken = pageToken, filter = filter)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
@@ -217,7 +217,7 @@ projects.databases.operations.list <- function(name, pageSize = NULL, pageToken 
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 projects.databases.operations.get <- function(name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.operations.get
     f <- googleAuthR::gar_api_generator(url, "GET", data_parse_function = function(x) x)
     f()
@@ -245,7 +245,7 @@ projects.databases.operations.get <- function(name) {
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 projects.databases.collectionGroups.indexes.delete <- function(name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.collectionGroups.indexes.delete
     f <- googleAuthR::gar_api_generator(url, "DELETE", data_parse_function = function(x) x)
     f()
@@ -277,7 +277,7 @@ projects.databases.collectionGroups.indexes.delete <- function(name) {
 #' @export
 projects.databases.collectionGroups.indexes.list <- function(parent, pageSize = NULL,
     pageToken = NULL, filter = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}/indexes", parent)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/indexes", parent)
     # firestore.projects.databases.collectionGroups.indexes.list
     pars = list(pageSize = pageSize, pageToken = pageToken, filter = filter)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
@@ -310,7 +310,7 @@ projects.databases.collectionGroups.indexes.list <- function(parent, pageSize = 
 #' @export
 projects.databases.collectionGroups.indexes.create <- function(GoogleFirestoreAdminV1Index,
     parent) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}/indexes", parent)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/indexes", parent)
     # firestore.projects.databases.collectionGroups.indexes.create
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
     stopifnot(inherits(GoogleFirestoreAdminV1Index, "gar_GoogleFirestoreAdminV1Index"))
@@ -340,7 +340,7 @@ projects.databases.collectionGroups.indexes.create <- function(GoogleFirestoreAd
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 projects.databases.collectionGroups.indexes.get <- function(name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.collectionGroups.indexes.get
     f <- googleAuthR::gar_api_generator(url, "GET", data_parse_function = function(x) x)
     f()
@@ -372,7 +372,7 @@ projects.databases.collectionGroups.indexes.get <- function(name) {
 #' @export
 projects.databases.collectionGroups.fields.patch <- function(GoogleFirestoreAdminV1Field,
     name, updateMask = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.collectionGroups.fields.patch
     pars = list(updateMask = updateMask)
     f <- googleAuthR::gar_api_generator(url, "PATCH", pars_args = rmNullObs(pars),
@@ -404,7 +404,7 @@ projects.databases.collectionGroups.fields.patch <- function(GoogleFirestoreAdmi
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 projects.databases.collectionGroups.fields.get <- function(name) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.collectionGroups.fields.get
     f <- googleAuthR::gar_api_generator(url, "GET", data_parse_function = function(x) x)
     f()
@@ -436,7 +436,7 @@ projects.databases.collectionGroups.fields.get <- function(name) {
 #' @export
 projects.databases.collectionGroups.fields.list <- function(parent, pageToken = NULL,
     pageSize = NULL, filter = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}/fields", parent)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/fields", parent)
     # firestore.projects.databases.collectionGroups.fields.list
     pars = list(pageToken = pageToken, pageSize = pageSize, filter = filter)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
@@ -468,7 +468,7 @@ projects.databases.collectionGroups.fields.list <- function(parent, pageToken = 
 #' @family CommitRequest functions
 #' @export
 projects.databases.documents.commit <- function(CommitRequest, database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:commit",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:commit",
         database)
     # firestore.projects.databases.documents.commit
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -502,7 +502,7 @@ projects.databases.documents.commit <- function(CommitRequest, database) {
 #' @export
 projects.databases.documents.listCollectionIds <- function(ListCollectionIdsRequest,
     parent) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}:listCollectionIds",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s:listCollectionIds",
         parent)
     # firestore.projects.databases.documents.listCollectionIds
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -543,7 +543,7 @@ projects.databases.documents.listCollectionIds <- function(ListCollectionIdsRequ
 projects.databases.documents.list <- function(parent, collectionId, pageToken = NULL,
     orderBy = NULL, transaction = NULL, mask.fieldPaths = NULL, pageSize = NULL,
     readTime = NULL, showMissing = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}/%s", parent, collectionId)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/%s", parent, collectionId)
     # firestore.projects.databases.documents.list
     pars = list(pageToken = pageToken, orderBy = orderBy, transaction = transaction,
         mask.fieldPaths = mask.fieldPaths, pageSize = pageSize, readTime = readTime,
@@ -577,7 +577,7 @@ projects.databases.documents.list <- function(parent, collectionId, pageToken = 
 #' @family RunQueryRequest functions
 #' @export
 projects.databases.documents.runQuery <- function(RunQueryRequest, parent) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}:runQuery", parent)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s:runQuery", parent)
     # firestore.projects.databases.documents.runQuery
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
     stopifnot(inherits(RunQueryRequest, "gar_RunQueryRequest"))
@@ -609,7 +609,7 @@ projects.databases.documents.runQuery <- function(RunQueryRequest, parent) {
 #' @family BatchGetDocumentsRequest functions
 #' @export
 projects.databases.documents.batchGet <- function(BatchGetDocumentsRequest, database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:batchGet",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:batchGet",
         database)
     # firestore.projects.databases.documents.batchGet
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -642,7 +642,7 @@ projects.databases.documents.batchGet <- function(BatchGetDocumentsRequest, data
 #' @family RollbackRequest functions
 #' @export
 projects.databases.documents.rollback <- function(RollbackRequest, database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:rollback",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:rollback",
         database)
     # firestore.projects.databases.documents.rollback
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -679,7 +679,7 @@ projects.databases.documents.rollback <- function(RollbackRequest, database) {
 #' @export
 projects.databases.documents.createDocument <- function(Document, parent, collectionId,
     documentId = NULL, mask.fieldPaths = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}/%s", parent, collectionId)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/%s", parent, collectionId)
     # firestore.projects.databases.documents.createDocument
     pars = list(documentId = documentId, mask.fieldPaths = mask.fieldPaths)
     f <- googleAuthR::gar_api_generator(url, "POST", pars_args = rmNullObs(pars),
@@ -713,7 +713,7 @@ projects.databases.documents.createDocument <- function(Document, parent, collec
 #' @family ListenRequest functions
 #' @export
 projects.databases.documents.listen <- function(ListenRequest, database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:listen",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:listen",
         database)
     # firestore.projects.databases.documents.listen
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -748,7 +748,7 @@ projects.databases.documents.listen <- function(ListenRequest, database) {
 #' @export
 projects.databases.documents.get <- function(name, mask.fieldPaths = NULL, readTime = NULL,
     transaction = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.documents.get
     pars = list(mask.fieldPaths = mask.fieldPaths, readTime = readTime, transaction = transaction)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
@@ -781,7 +781,7 @@ projects.databases.documents.get <- function(name, mask.fieldPaths = NULL, readT
 #' @export
 projects.databases.documents.delete <- function(name, currentDocument.updateTime = NULL,
     currentDocument.exists = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.documents.delete
     pars = list(currentDocument.updateTime = currentDocument.updateTime, currentDocument.exists = currentDocument.exists)
     f <- googleAuthR::gar_api_generator(url, "DELETE", pars_args = rmNullObs(pars),
@@ -813,7 +813,7 @@ projects.databases.documents.delete <- function(name, currentDocument.updateTime
 #' @family BatchWriteRequest functions
 #' @export
 projects.databases.documents.batchWrite <- function(BatchWriteRequest, database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:batchWrite",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:batchWrite",
         database)
     # firestore.projects.databases.documents.batchWrite
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -851,7 +851,7 @@ projects.databases.documents.batchWrite <- function(BatchWriteRequest, database)
 #' @export
 projects.databases.documents.patch <- function(Document, name, mask.fieldPaths = NULL,
     currentDocument.updateTime = NULL, currentDocument.exists = NULL, updateMask.fieldPaths = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.databases.documents.patch
     pars = list(mask.fieldPaths = mask.fieldPaths, currentDocument.updateTime = currentDocument.updateTime,
         currentDocument.exists = currentDocument.exists, updateMask.fieldPaths = updateMask.fieldPaths)
@@ -886,7 +886,7 @@ projects.databases.documents.patch <- function(Document, name, mask.fieldPaths =
 #' @family WriteRequest functions
 #' @export
 projects.databases.documents.write <- function(WriteRequest, database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:write",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:write",
         database)
     # firestore.projects.databases.documents.write
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -919,7 +919,7 @@ projects.databases.documents.write <- function(WriteRequest, database) {
 #' @family PartitionQueryRequest functions
 #' @export
 projects.databases.documents.partitionQuery <- function(PartitionQueryRequest, parent) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+parent}:partitionQuery",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s:partitionQuery",
         parent)
     # firestore.projects.databases.documents.partitionQuery
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -953,7 +953,7 @@ projects.databases.documents.partitionQuery <- function(PartitionQueryRequest, p
 #' @export
 projects.databases.documents.beginTransaction <- function(BeginTransactionRequest,
     database) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+database}/documents:beginTransaction",
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/documents:beginTransaction",
         database)
     # firestore.projects.databases.documents.beginTransaction
     f <- googleAuthR::gar_api_generator(url, "POST", data_parse_function = function(x) x)
@@ -987,7 +987,7 @@ projects.databases.documents.beginTransaction <- function(BeginTransactionReques
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 projects.locations.list <- function(name, pageSize = NULL, filter = NULL, pageToken = NULL) {
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}/locations", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s/locations", name)
     # firestore.projects.locations.list
     pars = list(pageSize = pageSize, filter = filter, pageToken = pageToken)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
@@ -1022,7 +1022,7 @@ projects.locations.list <- function(name, pageSize = NULL, filter = NULL, pageTo
 projects.locations.get <- function(name) {
 
 
-    url <- sprintf("https://firestore.googleapis.com/v1/{+name}", name)
+    url <- sprintf("https://firestore.googleapis.com/v1/%s", name)
     # firestore.projects.locations.get
 
     f <- googleAuthR::gar_api_generator(url, "GET", data_parse_function = function(x) x)
