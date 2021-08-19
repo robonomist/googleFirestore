@@ -4,15 +4,9 @@
 \alias{BatchWriteRequest}
 \title{BatchWriteRequest Object}
 \usage{
-BatchWriteRequest(
-  BatchWriteRequest.labels = NULL,
-  labels = NULL,
-  writes = NULL
-)
+BatchWriteRequest(labels = NULL, writes = NULL)
 }
 \arguments{
-\item{BatchWriteRequest.labels}{The \link{BatchWriteRequest.labels} object or list of objects}
-
 \item{labels}{Labels associated with this batch write}
 
 \item{writes}{The writes to apply}
@@ -29,7 +23,6 @@ The request for Firestore.BatchWrite.
 }
 \seealso{
 Other BatchWriteRequest functions: 
-\code{\link{BatchWriteRequest.labels}()},
 \code{\link{projects.databases.documents.batchWrite}()}
 }
 \concept{BatchWriteRequest functions}

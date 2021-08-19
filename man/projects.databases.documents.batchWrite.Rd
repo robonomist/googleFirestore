@@ -29,7 +29,6 @@ See \code{\link[googleAuthR]{gar_auth}} for details.
 \href{https://cloud.google.com/firestore}{Google Documentation}
 
 Other BatchWriteRequest functions: 
-\code{\link{BatchWriteRequest.labels}()},
 \code{\link{BatchWriteRequest}()}
 }
 \concept{BatchWriteRequest functions}
