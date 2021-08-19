@@ -4,24 +4,16 @@
 \alias{Document}
 \title{Document Object}
 \usage{
-Document(
-  Document.fields = NULL,
-  updateTime = NULL,
-  fields = NULL,
-  name = NULL,
-  createTime = NULL
-)
+Document(name = NULL, createTime = NULL, updateTime = NULL, fields = NULL)
 }
 \arguments{
-\item{Document.fields}{The \link{Document.fields} object or list of objects}
-
-\item{updateTime}{Output only}
-
-\item{fields}{The document's fields}
-
 \item{name}{The resource name of the document, for example \code{projects/{project_id}/databases/{database_id}/documents/{document_path}}}
 
 \item{createTime}{Output only}
+
+\item{updateTime}{Output only}
+
+\item{fields}{The document's fields. The map keys represent field names. A simple field name contains only characters \code{a} to \code{z}, \code{A} to \code{Z}, \code{0} to \code{9}, or \verb{_}, and must not start with \code{0} to \code{9}. For example, \code{foo_bar_17}. Field names matching the regular expression \verb{__.*__} are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For \code{map_value}, the field path is represented by the simple or quoted field names of the containing fields, delimited by \code{.}. For example, the structured field \code{'foo' : { map_value: { 'x&y' : { string_value: 'hello' }}}} would be represented by the field path \code{foo.x&y}. Within a field path, a quoted field name starts and ends with \verb{`} and may contain any character. Some characters, including \verb{`}, must be escaped using a \verb{\\}. For example, \code{`x&y`} represents \code{x&y} and \verb{`bak\\`tik`} represents \verb{bak`tik}.}
 }
 \value{
 Document object
@@ -35,7 +27,6 @@ A Firestore document. Must not exceed 1 MiB - 4 bytes.
 }
 \seealso{
 Other Document functions: 
-\code{\link{Document.fields}()},
 \code{\link{projects.databases.documents.createDocument}()},
 \code{\link{projects.databases.documents.patch}()}
 }

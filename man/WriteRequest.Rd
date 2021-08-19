@@ -4,17 +4,9 @@
 \alias{WriteRequest}
 \title{WriteRequest Object}
 \usage{
-WriteRequest(
-  WriteRequest.labels = NULL,
-  writes = NULL,
-  streamToken = NULL,
-  labels = NULL,
-  streamId = NULL
-)
+WriteRequest(writes = NULL, streamToken = NULL, labels = NULL, streamId = NULL)
 }
 \arguments{
-\item{WriteRequest.labels}{The \link{WriteRequest.labels} object or list of objects}
-
 \item{writes}{The writes to apply}
 
 \item{streamToken}{A stream token that was previously sent by the server}
@@ -35,7 +27,6 @@ The request for Firestore.Write. The first request creates a stream, or resumes 
 }
 \seealso{
 Other WriteRequest functions: 
-\code{\link{WriteRequest.labels}()},
 \code{\link{projects.databases.documents.write}()}
 }
 \concept{WriteRequest functions}

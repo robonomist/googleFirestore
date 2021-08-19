@@ -4,16 +4,9 @@
 \alias{ListenRequest}
 \title{ListenRequest Object}
 \usage{
-ListenRequest(
-  ListenRequest.labels = NULL,
-  labels = NULL,
-  removeTarget = NULL,
-  addTarget = NULL
-)
+ListenRequest(labels = NULL, removeTarget = NULL, addTarget = NULL)
 }
 \arguments{
-\item{ListenRequest.labels}{The \link{ListenRequest.labels} object or list of objects}
-
 \item{labels}{Labels associated with this target change}
 
 \item{removeTarget}{The ID of a target to remove from this stream}
@@ -32,7 +25,6 @@ A request for Firestore.Listen
 }
 \seealso{
 Other ListenRequest functions: 
-\code{\link{ListenRequest.labels}()},
 \code{\link{projects.databases.documents.listen}()}
 }
 \concept{ListenRequest functions}

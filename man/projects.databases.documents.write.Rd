@@ -29,7 +29,6 @@ See \code{\link[googleAuthR]{gar_auth}} for details.
 \href{https://cloud.google.com/firestore}{Google Documentation}
 
 Other WriteRequest functions: 
-\code{\link{WriteRequest.labels}()},
 \code{\link{WriteRequest}()}
 }
 \concept{WriteRequest functions}

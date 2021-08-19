@@ -29,7 +29,6 @@ See \code{\link[googleAuthR]{gar_auth}} for details.
 \href{https://cloud.google.com/firestore}{Google Documentation}
 
 Other ListenRequest functions: 
-\code{\link{ListenRequest.labels}()},
 \code{\link{ListenRequest}()}
 }
 \concept{ListenRequest functions}

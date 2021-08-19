@@ -44,7 +44,6 @@ See \code{\link[googleAuthR]{gar_auth}} for details.
 \href{https://cloud.google.com/firestore}{Google Documentation}
 
 Other Document functions: 
-\code{\link{Document.fields}()},
 \code{\link{Document}()},
 \code{\link{projects.databases.documents.createDocument}()}
 }
