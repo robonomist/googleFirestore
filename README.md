@@ -1,4 +1,4 @@
-# googlefirestorev1.auto
+# googleFirestore
 ![](http://www.google.com/images/icons/product/search-32.gif)
 Cloud Firestore API R library
 
@@ -19,12 +19,12 @@ Set the appropriate Google API scopes:
 
 ```r
 library(googleAuthR)
-library(googlefirestorev1.auto)
+library(googleFirestore)
 options(googleAuthR.scopes.selected = c('https://www.googleapis.com/auth/datastore', 'https://www.googleapis.com/auth/cloud-platform'))
 
 gar_auth()
 ```
- See the documentation for the package starting at `?googlefirestorev1.auto`
+ See the documentation for the package starting at `?googleFirestore`
 ## Useage
 The intention is for these auto-generated packages to be used as a basis for proper R packages suitable for CRAN.
 Fork this package, and then use the generated functions and objects to make what you need.

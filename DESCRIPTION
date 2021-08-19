@@ -1,11 +1,15 @@
-Package: googlefirestorev1.auto
+Package: googleFirestore
 Title: Cloud Firestore API
-Version: 0.0.0.9000
-Authors@R: 
+Version: 0.0.1.9000
+Authors@R: c(
     person(given = "Mark",
            family = "Edmondson",
            role = c("aut", "cre"),
-           email = "m@sunholo.com")
+           email = "m@sunholo.com"),
+    person(given = "Juha",
+           family = "Itkonen",
+           role = c("aut", "cre"),
+           email = "juha@robonomist.com"))
 Description: Accesses the NoSQL document database built for automatic
     scaling, high performance, and ease of application development.
     Auto-generated via googleAuthR.
