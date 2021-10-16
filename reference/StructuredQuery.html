@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">googleFirestore</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.1000</span>
       </span>
     </div>
 
@@ -118,26 +118,34 @@
     </div>
 
     <pre class="usage"><span class='fu'>StructuredQuery</span><span class='op'>(</span>
-  offset <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select <span class='op'>=</span> <span class='cn'>NULL</span>,
+  from <span class='op'>=</span> <span class='cn'>NULL</span>,
   where <span class='op'>=</span> <span class='cn'>NULL</span>,
+  orderBy <span class='op'>=</span> <span class='cn'>NULL</span>,
   startAt <span class='op'>=</span> <span class='cn'>NULL</span>,
   endAt <span class='op'>=</span> <span class='cn'>NULL</span>,
-  limit <span class='op'>=</span> <span class='cn'>NULL</span>,
-  from <span class='op'>=</span> <span class='cn'>NULL</span>,
-  orderBy <span class='op'>=</span> <span class='cn'>NULL</span>,
-  select <span class='op'>=</span> <span class='cn'>NULL</span>
+  offset <span class='op'>=</span> <span class='cn'>NULL</span>,
+  limit <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>offset</th>
-      <td><p>The number of results to skip</p></td>
+      <th>select</th>
+      <td><p>The projection to return</p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>The collections to query</p></td>
     </tr>
     <tr>
       <th>where</th>
       <td><p>The filter to apply</p></td>
+    </tr>
+    <tr>
+      <th>orderBy</th>
+      <td><p>The order to apply to the query results</p></td>
     </tr>
     <tr>
       <th>startAt</th>
@@ -148,20 +156,12 @@
       <td><p>A end point for the query results</p></td>
     </tr>
     <tr>
+      <th>offset</th>
+      <td><p>The number of results to skip</p></td>
+    </tr>
+    <tr>
       <th>limit</th>
       <td><p>The maximum number of results to return</p></td>
-    </tr>
-    <tr>
-      <th>from</th>
-      <td><p>The collections to query</p></td>
-    </tr>
-    <tr>
-      <th>orderBy</th>
-      <td><p>The order to apply to the query results</p></td>
-    </tr>
-    <tr>
-      <th>select</th>
-      <td><p>The projection to return</p></td>
     </tr>
     </table>
 
