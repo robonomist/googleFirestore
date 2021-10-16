@@ -4,3 +4,4 @@
 .httr-oauth
 .DS_Store
 docs
+firebase-reader-auth-key.json

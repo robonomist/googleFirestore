@@ -5,32 +5,32 @@
 \title{StructuredQuery Object}
 \usage{
 StructuredQuery(
-  offset = NULL,
+  select = NULL,
+  from = NULL,
   where = NULL,
+  orderBy = NULL,
   startAt = NULL,
   endAt = NULL,
-  limit = NULL,
-  from = NULL,
-  orderBy = NULL,
-  select = NULL
+  offset = NULL,
+  limit = NULL
 )
 }
 \arguments{
-\item{offset}{The number of results to skip}
+\item{select}{The projection to return}
+
+\item{from}{The collections to query}
 
 \item{where}{The filter to apply}
+
+\item{orderBy}{The order to apply to the query results}
 
 \item{startAt}{A starting point for the query results}
 
 \item{endAt}{A end point for the query results}
 
+\item{offset}{The number of results to skip}
+
 \item{limit}{The maximum number of results to return}
-
-\item{from}{The collections to query}
-
-\item{orderBy}{The order to apply to the query results}
-
-\item{select}{The projection to return}
 }
 \value{
 StructuredQuery object

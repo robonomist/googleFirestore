@@ -25,23 +25,25 @@ toFields  <- function(x) {
   })
 }
 
-
 fromFields  <- function(x) {
   lapply(x, function(x) {
-    n <- names(x)
+    n <- names(x)[1]
     y <-
-      if (n %in% c("doubleValue", "stringValue", "booleanValue", "nullValue")) {
-        x[[1]]
+      if (length(x[[1]]) == 0L) {
+        NULL
+      } else if (n %in% c("referenceValue", "doubleValue", "stringValue", "booleanValue", "nullValue")) {
+        x[[n]]
       } else if (n == "integerValue"){
-        as.integer(x[[1]])
+        as.integer(x[[n]])
       } else if (n == "arrayValue"){
-        x[[1]]$values[[1]]
+        fromFields(x[[n]]$values)
       } else if (n == "mapValue"){
-        fromFields(x[[1]]$fields)
+        fromFields(x[[n]]$fields)
       } else if (n == "timestampValue"){
-        fromZulu(x[[1]])
+        fromZulu(x[[n]])
       } else {
-        x
+        warning(n, "not implemented")
+        x[[1]]
       }
     y
   })
@@ -64,31 +66,82 @@ parseDocument <- function(x) {
 
 
 #' @export
-documents.createDocument <- function(x, collectionId, documentId = NULL, project = Sys.getenv("FIRESTORE_PROJECT"), database = "(default)") {
+create_document <- function(x,
+                            collectionId,
+                            documentId = NULL,
+                            project = Sys.getenv("FIRESTORE_PROJECT"),
+                            database = "(default)") {
+
   parent <- sprintf("projects/%s/databases/%s/documents", project, database)
+
   parseDocument(
     projects.databases.documents.createDocument(
       Document = Document(fields = toFields(x)),
       parent = parent,
       collectionId = collectionId,
       documentId = documentId
-    ))
+    )
+  )
 }
 
 #' @export
-documents.get <- function(collectionId, documentId, mask = NULL, project = Sys.getenv("FIRESTORE_PROJECT"), database = "(default)") {
+get_document <- function(collectionId,
+                         documentId,
+                         mask = NULL,
+                         project = Sys.getenv("FIRESTORE_PROJECT"),
+                         database = "(default)") {
+
   name <- sprintf("projects/%s/databases/%s/documents/%s/%s",
                   project, database, collectionId, documentId)
+
   parseDocument(
     projects.databases.documents.get(
       name = name,
       mask.fieldPaths = DocumentMask(mask)
-    ))
+    )
+  )
 }
 
 #' @export
-documents.patch <- function(x, collectionId, documentId, updateMask, project = Sys.getenv("FIRESTORE_PROJECT"), database = "(default)") {
+list_documents <- function(collectionId,
+                          pageToken = NULL,
+                          orderBy = NULL,
+                          transaction = NULL,
+                          mask = NULL,
+                          pageSize = NULL,
+                          readTime = NULL,
+                          showMissing = NULL,
+                          project = Sys.getenv("FIRESTORE_PROJECT"),
+                          database = "(default)") {
+
+  parent <- sprintf("projects/%s/databases/%s/documents",
+                  project, database)
+
+  r <- projects.databases.documents.list(
+    parent = parent,
+    collectionId = collectionId,
+    pageToken = pageToken,
+    orderBy = orderBy,
+    transaction = transaction,
+    mask.fieldPaths = DocumentMask(mask),
+    pageSize = pageSize,
+    readTime = readTime,
+    showMissing = showMissing
+  )
+
+  lapply(r$documents, parseDocument)
+}
+
+#' @export
+patch_documents <- function(x,
+                            collectionId,
+                            documentId,
+                            updateMask,
+                            project = Sys.getenv("FIRESTORE_PROJECT"),
+                            database = "(default)") {
+
   name <- sprintf("projects/%s/databases/%s/documents/%s/%s", project, database, collectionId, documentId)
+
   parseDocument(
     projects.databases.documents.patch(
       Document = Document(fields = toFields(x)),

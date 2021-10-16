@@ -549,6 +549,7 @@ projects.databases.documents.list <- function(parent, collectionId, pageToken = 
         mask.fieldPaths = mask.fieldPaths, pageSize = pageSize, readTime = readTime,
         showMissing = showMissing)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
+                                        simplifyVector = FALSE,
         data_parse_function = function(x) x)
     f()
 
