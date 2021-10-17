@@ -58,10 +58,12 @@ fromZulu <- function(x) {
 }
 
 parseDocument <- function(x) {
-  Document(name = x$name,
-           createTime = fromZulu(x$createTime),
-           updateTime = fromZulu(x$updateTime),
-           fields = fromFields(x$fields))
+  d <- fromFields(x$fields)
+  attr(d, "name") <- x$name
+  attr(d, "createTime") <- fromZulu(x$createTime)
+  attr(d, "updateTime") <- fromZulu(x$updateTime)
+  attr(d, "class") <- "firestore_document"
+  d
 }
 
 
