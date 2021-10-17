@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-10-16T16:25Z
+last_built: 2021-10-17T14:07Z
 urls:
   reference: https://robonomist.github.io/googleFirestore//reference
   article: https://robonomist.github.io/googleFirestore//articles
