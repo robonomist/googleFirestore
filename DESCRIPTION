@@ -1,6 +1,6 @@
 Package: googleFirestore
 Title: Cloud Firestore API
-Version: 0.0.2.1000
+Version: 0.0.3.1000
 Authors@R: c(
     person(given = "Mark",
            family = "Edmondson",
