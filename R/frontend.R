@@ -26,28 +26,29 @@ toFields  <- function(x) {
 }
 
 fromFields  <- function(x) {
-  lapply(x, function(x) {
-    n <- names(x)[1]
-    y <-
-      if (length(x[[1]]) == 0L) {
-        NULL
-      } else if (n %in% c("referenceValue", "doubleValue", "stringValue", "booleanValue", "nullValue")) {
-        x[[n]]
-      } else if (n == "integerValue"){
-        as.integer(x[[n]])
-      } else if (n == "arrayValue"){
-        fromFields(x[[n]]$values)
-      } else if (n == "mapValue"){
-        fromFields(x[[n]]$fields)
-      } else if (n == "timestampValue"){
-        fromZulu(x[[n]])
-      } else {
-        warning(n, "not implemented")
-        x[[1]]
-      }
-    y
-  })
+  lapply(x, fromField)
 }
+
+fromField  <- function(x) {
+  if (length(x[[1]]) == 0L) return(NULL)
+  switch(
+    names(x)[1],
+    referenceValue = ,
+    doubleValue = ,
+    stringValue = ,
+    booleanValue =,
+    nullValue = x[[1]],
+    integerValue = as.integer(x[[1]]),
+    arrayValue = fromField(x[[1]]$values),
+    mapValue = fromFields(x[[1]]$fields),
+    timestampValue = fromZulu(x[[1]]),
+    {
+      warning(n, "not implemented")
+      x[[1]]
+    }
+  )
+}
+
 
 toZulu <- function(x) {
   format(x, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
