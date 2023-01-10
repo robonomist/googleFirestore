@@ -753,9 +753,9 @@ projects.databases.documents.get <- function(name, mask.fieldPaths = NULL, readT
     # firestore.projects.databases.documents.get
     pars = list(mask.fieldPaths = mask.fieldPaths, readTime = readTime, transaction = transaction)
     f <- googleAuthR::gar_api_generator(url, "GET", pars_args = rmNullObs(pars),
-        data_parse_function = function(x) x)
+                                        simplifyVector = FALSE,
+                                        data_parse_function = function(x) x)
     f()
-
 }
 
 #' Deletes a document.
