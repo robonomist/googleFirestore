@@ -25,11 +25,8 @@ toFields  <- function(x) {
   })
 }
 
-fromFields  <- function(x, array = FALSE) {
-  y <- lapply(x, fromField)
-  if (array && getOption("googleFirestore.unlist.arrays", TRUE)) {
-    unlist(y, recursive = FALSE)
-  } else y
+fromFields  <- function(x) {
+  lapply(x, fromField)
 }
 
 fromField  <- function(x) {
@@ -43,7 +40,7 @@ fromField  <- function(x) {
     booleanValue =,
     nullValue = x[[1]],
     integerValue = as.integer(x[[1]]),
-    arrayValue = fromFields(x[[1]]$values, array = TRUE),
+    arrayValue = fromFields(x[[1]]$values),
     mapValue = fromFields(x[[1]]$fields),
     timestampValue = fromZulu(x[[1]]),
     {
